@@ -3,7 +3,9 @@
 
 #include "Bureaucrat.hpp"
 
-class Form : public Bureaucrat
+class Bureaucrat;
+
+class Form
 {
     private:
         const std::string Name;
@@ -13,8 +15,27 @@ class Form : public Bureaucrat
 
     public:
         Form();
+        Form(const std::string& name, int gradeToSign, int gradeToExecute);
+        Form(const Form& other);
+        Form& operator=(const Form& other);
         ~Form();
-        void beSigned(Bureaucrat& bureaucrat);
+
+        const std::string& getName() const;
+        bool isSigned() const;
+        int getGradeToSign() const;
+        int getGradeToExecute() const;
+
+        void beSigned(const Bureaucrat& bureaucrat);
+
+        class GradeTooHighException : public std::exception {
+            public:
+                const char* what() const throw();
+        };
+
+        class GradeTooLowException : public std::exception {
+            public:
+                const char* what() const throw();
+        };
 
 };
 
