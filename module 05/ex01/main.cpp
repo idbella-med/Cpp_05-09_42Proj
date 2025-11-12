@@ -1,73 +1,40 @@
 #include "Bureaucrat.hpp"
 
 int main() {
-    std::cout << "=== Test 1: Creating valid bureaucrats ===" << std::endl;
+    std::cout << "===== create bureaucrats =====\n";
+    Bureaucrat high("Alice", 5);
+    Bureaucrat low("Bob", 140);
+    std::cout << high << '\n' << low << "\n\n";
+
+    std::cout << "===== create forms =====\n";
+    Form tax("Tax Form", 25, 15);   // mid-range
+    Form nda("NDA", 130, 130);      // low-range
+    std::cout << tax << "\n" << nda << "\n\n";
+
+    std::cout << "===== try to sign (high-grade bureaucrat) =====\n";
+    high.signForm(tax);   // success
+    high.signForm(nda);   // success
+
+    std::cout << "\n===== try to sign (low-grade bureaucrat) =====\n";
+    low.signForm(tax);    // fail
+    low.signForm(nda);    // success
+
+    std::cout << "\n===== final form states =====\n";
+    std::cout << tax << "\n" << nda << '\n';
+
+    std::cout << "\n===== exception tests =====\n";
     try {
-        Bureaucrat bob("Bob", 50);
-        std::cout << bob << std::endl;
-        
-        Bureaucrat alice("Alice", 1);
-        std::cout << alice << std::endl;
-        
-        Bureaucrat john("John", 150);
-        std::cout << john << std::endl;
-    }
+        Form invalid("Invalid", 0, 1); 
+    }   // too high
     catch (std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << e.what() << '\n'; 
     }
 
-    std::cout << "\n=== Test 2: Grade too high (< 1) ===" << std::endl;
     try {
-        Bureaucrat invalid("Invalid", 0);
-        std::cout << invalid << std::endl;
-    }
+        Form invalid("Invalid", 151, 150);
+    } // too low
     catch (std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n=== Test 3: Grade too low (> 150) ===" << std::endl;
-    try {
-        Bureaucrat invalid("Invalid", 151);
-        std::cout << invalid << std::endl;
-    }
-    catch (std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n=== Test 4: Increment grade ===" << std::endl;
-    try {
-        Bureaucrat charlie("Charlie", 3);
-        std::cout << charlie << std::endl;
-        
-        charlie.incrementGrade();
-        std::cout << "After increment: " << charlie << std::endl;
-        
-        charlie.incrementGrade();
-        std::cout << "After increment: " << charlie << std::endl;
-        
-        charlie.incrementGrade();
-        std::cout << "After increment: " << charlie << std::endl;
-    }
-    catch (std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n=== Test 5: Decrement grade ===" << std::endl;
-    try {
-        Bureaucrat diana("Diana", 149);
-        std::cout << diana << std::endl;
-        
-        diana.decrementGrade();
-        std::cout << "After decrement: " << diana << std::endl;
-        
-        diana.decrementGrade();
-        std::cout << "After decrement: " << diana << std::endl;
-        
-        diana.decrementGrade(); 
-        std::cout << "After decrement: " << diana << std::endl;
-    }
-    catch (std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << e.what() << '\n';
     }
 
     return 0;

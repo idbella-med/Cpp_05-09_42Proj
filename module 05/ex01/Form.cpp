@@ -2,13 +2,13 @@
 #include "Bureaucrat.hpp"
 
 
-Form::Form() : Name("Default Form"), is_it_Signed(false), G_required_Sign(150), G_required_Execute(150) {
+Form::Form() : Name("Default Form"), Is_Signed(false), G_required_Sign(150), G_required_Execute(150) {
     std::cout << "Form default constructor called" << std::endl;
 }
 
 
 Form::Form(const std::string& name, int gradeToSign, int gradeToExecute)
-    : Name(name), is_it_Signed(false), G_required_Sign(gradeToSign), G_required_Execute(gradeToExecute) {
+    : Name(name), Is_Signed(false), G_required_Sign(gradeToSign), G_required_Execute(gradeToExecute) {
     
     std::cout << "Form parametric constructor called" << std::endl;
     
@@ -20,7 +20,7 @@ Form::Form(const std::string& name, int gradeToSign, int gradeToExecute)
 
 
 Form::Form(const Form& other)
-    : Name(other.Name), is_it_Signed(other.is_it_Signed),
+    : Name(other.Name), Is_Signed(other.Is_Signed),
       G_required_Sign(other.G_required_Sign), G_required_Execute(other.G_required_Execute) {
     std::cout << "Form copy constructor called" << std::endl;
 }
@@ -29,7 +29,7 @@ Form::Form(const Form& other)
 Form& Form::operator=(const Form& other) {
     std::cout << "Form copy assignment operator called" << std::endl;
     if (this != &other) {
-        is_it_Signed = other.is_it_Signed;
+        Is_Signed = other.Is_Signed;
     }
     return *this;
 }
@@ -44,8 +44,11 @@ const std::string& Form::getName() const {
     return Name;
 }
 
-bool Form::isSigned() const {
-    return is_it_Signed;
+std::string Form::isSigned() const {
+    if (Is_Signed)
+        return "yes";
+    else
+        return "no";
 }
 
 int Form::getGradeToSign() const {
@@ -58,7 +61,7 @@ int Form::getGradeToExecute() const {
 
 void Form::beSigned(const Bureaucrat& bureaucrat) {
     if (bureaucrat.getGrade() <= G_required_Sign) {
-        is_it_Signed = true;
+        Is_Signed = true;
     } else {
         throw GradeTooLowException();
     }
@@ -74,7 +77,7 @@ const char* Form::GradeTooLowException::what() const throw() {
 
 std::ostream& operator<<(std::ostream& out, const Form& form) {
     out << "Form: " << form.getName()
-        << ", Signed: " << (form.isSigned() ? "Yes" : "No")
+        << ", Signed: " << form.isSigned()
         << ", Grade to sign: " << form.getGradeToSign()
         << ", Grade to execute: " << form.getGradeToExecute();
     return out;
