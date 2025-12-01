@@ -22,7 +22,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& bureaucrat) {
     return *this;
 }
 
-std::string Bureaucrat::getName() const {
+const std::string& Bureaucrat::getName() const {
     return Name;
 }
 
@@ -31,19 +31,15 @@ int Bureaucrat::getGrade() const {
 }
 
 void Bureaucrat::incrementGrade() {
-    if (Grade - 1 < 1) {
+    if (Grade - 1 < 1)
         throw GradeTooHighException();
-    }
-    else
-        Grade--;
+    Grade--;
 }
 
 void Bureaucrat::decrementGrade() {
-    if (Grade + 1 > 150) {
+    if (Grade + 1 > 150)
         throw GradeTooLowException();
-    }
-    else
-        Grade++;
+    Grade++;
 }
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat) {

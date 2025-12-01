@@ -34,7 +34,7 @@ const std::string& PresidentialPardonForm::getTarget() const {
 }
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
-    if (isSigned() == "no") {
+    if (!get_Issigned()) {
         throw FormNotSignedException();
     }
     

@@ -22,7 +22,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& bureaucrat) {
     return *this;
 }
 
-std::string Bureaucrat::getName() const {
+const std::string& Bureaucrat::getName() const {
     return Name;
 }
 

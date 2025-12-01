@@ -3,14 +3,14 @@
 int main() {
     std::cout << "=== Test 1: Creating valid bureaucrats ===" << std::endl;
     try {
-        Bureaucrat bob("Bob", 50);
-        std::cout << bob << std::endl;
+        Bureaucrat mohamed0("mohamed0", 50);
+        std::cout << mohamed0 << std::endl;
         
-        Bureaucrat alice("Alice", 1);
-        std::cout << alice << std::endl;
+        Bureaucrat mohamed1("mohamed1", 1);
+        std::cout << mohamed1 << std::endl;
         
-        Bureaucrat john("John", 150);
-        std::cout << john << std::endl;
+        Bureaucrat mohamed2("mohamed2", 150);
+        std::cout << mohamed2 << std::endl;
     }
     catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
@@ -36,17 +36,17 @@ int main() {
 
     std::cout << "\n=== Test 4: Increment grade ===" << std::endl;
     try {
-        Bureaucrat charlie("Charlie", 3);
-        std::cout << charlie << std::endl;
+        Bureaucrat saad("saad", 3);
+        std::cout << saad << std::endl;
         
-        charlie.incrementGrade();
-        std::cout << "After increment: " << charlie << std::endl;
+        saad.incrementGrade();
+        std::cout << "After increment: " << saad << std::endl;
         
-        charlie.incrementGrade();
-        std::cout << "After increment: " << charlie << std::endl;
+        saad.incrementGrade();
+        std::cout << "After increment: " << saad << std::endl;
         
-        charlie.incrementGrade();
-        std::cout << "After increment: " << charlie << std::endl;
+        saad.incrementGrade();
+        std::cout << "After increment: " << saad << std::endl;
     }
     catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
@@ -54,17 +54,17 @@ int main() {
 
     std::cout << "\n=== Test 5: Decrement grade ===" << std::endl;
     try {
-        Bureaucrat diana("Diana", 14);
-        std::cout << diana << std::endl;
+        Bureaucrat zakaria("zakaria", 148);
+        std::cout << zakaria << std::endl;
         
-        diana.decrementGrade();
-        std::cout << "After decrement: " << diana << std::endl;
+        zakaria.decrementGrade();
+        std::cout << "After decrement: " << zakaria << std::endl;
         
-        diana.decrementGrade();
-        std::cout << "After decrement: " << diana << std::endl;
+        zakaria.decrementGrade();
+        std::cout << "After decrement: " << zakaria << std::endl;
         
-        diana.decrementGrade(); 
-        std::cout << "After decrement: " << diana << std::endl;
+        zakaria.decrementGrade(); 
+        std::cout << "After decrement: " << zakaria << std::endl;
     }
     catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;

@@ -1,12 +1,12 @@
 NAME = converter
 
 COMP = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = main.cpp \
        ScalarConverter.cpp
 	
-OBJ = $(SRC:.cpp=.o)
+OBJ = $(SRCS:.cpp=.o)
 
 HEADER = ScalarConverter.hpp
 

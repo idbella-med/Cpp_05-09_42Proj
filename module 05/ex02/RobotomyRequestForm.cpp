@@ -35,7 +35,7 @@ const std::string& RobotomyRequestForm::getTarget() const {
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
-    if (isSigned() == "no") {
+    if (!get_Issigned()) {
         throw FormNotSignedException();
     }
     if (executor.getGrade() > getGradeToExecute()) {

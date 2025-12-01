@@ -37,7 +37,7 @@ const std::string& ShrubberyCreationForm::getTarget() const {
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
-    if (isSigned() == "no") {
+    if (!get_Issigned()) {
         throw FormNotSignedException();
     }
 
@@ -48,10 +48,8 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
     std::string filename = _target + "_shrubbery";
     std::ofstream file(filename.c_str());
     
-    if (!file.is_open()) {
-        std::cerr << "Error: Could not create file " << filename << std::endl;
-        return;
-    }
+    if (!file.is_open())
+        throw std::runtime_error("Could not create file");
     
     file << "       ^^^" << std::endl;
     file << "      ^^^^^" << std::endl;

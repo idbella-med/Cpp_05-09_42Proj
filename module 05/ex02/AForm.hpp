@@ -1,5 +1,5 @@
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include "Bureaucrat.hpp"
 
@@ -23,6 +23,7 @@ class AForm
         const std::string& getName() const;
         std::string isSigned() const;
         int getGradeToSign() const;
+        bool get_Issigned() const;
         int getGradeToExecute() const;
 
         void beSigned(const Bureaucrat& bureaucrat);
@@ -38,8 +39,10 @@ class AForm
                 const char* what() const throw();
         };
 
-        
-
+        class FormNotSignedException : public std::exception {
+            public:
+                virtual const char* what() const throw();
+        };
 };
 
 std::ostream& operator<<(std::ostream& out, const AForm& Aform);

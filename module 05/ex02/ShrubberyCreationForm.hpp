@@ -5,19 +5,19 @@
 #include <fstream>
 
 class ShrubberyCreationForm : public AForm {
-private:
-    std::string _target;
+    private:
+        std::string _target;
 
-public:
-    ShrubberyCreationForm();
-    ShrubberyCreationForm(const std::string& target);
-    ShrubberyCreationForm(const ShrubberyCreationForm& other);
-    ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
-    ~ShrubberyCreationForm();
+    public:
+        ShrubberyCreationForm();
+        ShrubberyCreationForm(const std::string& target);
+        ShrubberyCreationForm(const ShrubberyCreationForm& other);
+        ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
+        ~ShrubberyCreationForm();
 
-    const std::string& getTarget() const;
+        const std::string& getTarget() const;
 
-    void execute(Bureaucrat const & executor) const;
+        void execute(Bureaucrat const & executor) const;
 };
 
 #endif

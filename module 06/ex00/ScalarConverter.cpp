@@ -10,13 +10,15 @@ bool ScalarConverter::isChar(const std::string& str) {
 }
 
 bool ScalarConverter::isInt(const std::string& str) {
-    if (str.empty()) return false;
+    if (str.empty())
+        return false;
     
     size_t i = 0;
     if (str[i] == '+' || str[i] == '-')
         i++;
     
-    if (i >= str.length()) return false;
+    if (i >= str.length())
+        return false;
     
     while (i < str.length()) {
         if (!isdigit(str[i]))
@@ -31,7 +33,8 @@ bool ScalarConverter::isFloat(const std::string& str) {
         return false;
     
     std::string without_f = str.substr(0, str.length() - 1);
-    if (without_f.empty()) return false;
+    if (without_f.empty())
+        return false;
     
     size_t i = 0;
     if (without_f[i] == '+' || without_f[i] == '-')
@@ -42,20 +45,22 @@ bool ScalarConverter::isFloat(const std::string& str) {
     
     while (i < without_f.length()) {
         if (without_f[i] == '.') {
-            if (has_dot) return false;
+            if (has_dot)
+                return false;
             has_dot = true;
-        } else if (isdigit(without_f[i])) {
-            has_digit = true;
-        } else {
-            return false;
         }
+        else if (isdigit(without_f[i]))
+            has_digit = true;
+        else
+            return false;
         i++;
     }
     return has_digit && has_dot;
 }
 
 bool ScalarConverter::isDouble(const std::string& str) {
-    if (str.empty()) return false;
+    if (str.empty())
+        return false;
     
     size_t i = 0;
     if (str[i] == '+' || str[i] == '-')
@@ -65,15 +70,16 @@ bool ScalarConverter::isDouble(const std::string& str) {
     bool has_digit = false;
     
     while (i < str.length()) {
-        if (str[i] == '.') {
+        if (str[i] == '.')
+        {
             if (has_dot)
                 return false;
             has_dot = true;
-        } else if (isdigit(str[i])) {
-            has_digit = true;
-        } else {
-            return false;
         }
+        else if (isdigit(str[i]))
+            has_digit = true;
+        else
+            return false;
         i++;
     }
     return has_digit && has_dot;

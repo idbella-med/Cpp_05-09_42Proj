@@ -10,7 +10,7 @@ SRCS = main.cpp \
        RobotomyRequestForm.cpp \
        PresidentialPardonForm.cpp
 	
-OBJ = $(SRC:.cpp=.o)
+OBJ = $(SRCS:.cpp=.o)
 
 HEADER = Bureaucrat.hpp \
        AForm.hpp \

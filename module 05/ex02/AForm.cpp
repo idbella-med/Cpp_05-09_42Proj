@@ -50,6 +50,10 @@ std::string AForm::isSigned() const {
         return "no";
 }
 
+bool AForm::get_Issigned() const {
+    return Is_Signed;
+}
+
 int AForm::getGradeToSign() const {
     return G_required_Sign;
 }
@@ -72,6 +76,10 @@ const char* AForm::GradeTooHighException::what() const throw() {
 
 const char* AForm::GradeTooLowException::what() const throw() {
     return "AForm grade is too low!";
+}
+
+const char* AForm::FormNotSignedException::what() const throw() {
+    return "Form is not signed!";
 }
 
 std::ostream& operator<<(std::ostream& out, const AForm& Aform) {
