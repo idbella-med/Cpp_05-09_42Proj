@@ -1,7 +1,7 @@
 NAME = Form
 
 COMP = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = Bureaucrat.cpp main.cpp Form.cpp
 OBJ = $(SRC:.cpp=.o)
@@ -12,7 +12,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	$(COMP) $(FLAGS) $^ -o $@
 
-%.o : %.cpp
+%.o : %.cpp $(HEADER)
 	$(COMP) $(FLAGS) -c $< -o $@
 
 clean :

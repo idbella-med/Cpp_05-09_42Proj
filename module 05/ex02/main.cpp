@@ -8,7 +8,7 @@ int main() {
     std::cout << "=== Test 1: ShrubberyCreationForm ===" << std::endl; 
     try {
         Bureaucrat gardener("Gardener", 130);
-        ShrubberyCreationForm shrub("home");
+        ShrubberyCreationForm shrub("");
         
         std::cout << gardener << std::endl;
         std::cout << shrub << std::endl;

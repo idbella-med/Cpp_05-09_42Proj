@@ -17,8 +17,11 @@ Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat) : Name(bureaucrat.Name), Gr
         std::cout << "Bureaucrat copy constructor called" << std::endl;
 }
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& bureaucrat) {
-    this->Grade = bureaucrat.getGrade();
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& bureaucrat)
+{
+    if (this != &bureaucrat) {
+        this->Grade = bureaucrat.getGrade();
+    }
     return *this;
 }
 
@@ -56,5 +59,5 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 }
 
 Bureaucrat::~Bureaucrat() {
-    std::cout << "Bureaucrat deconstructor called" << std::endl;
+    std::cout << "Bureaucrat destructor called" << std::endl;
 };

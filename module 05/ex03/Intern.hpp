@@ -4,8 +4,6 @@
 #include "AForm.hpp"
 #include <iostream>
 
-class AForm;
-
 class Intern {
     public:
         Intern();

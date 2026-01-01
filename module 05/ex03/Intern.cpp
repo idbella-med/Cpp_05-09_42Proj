@@ -34,7 +34,8 @@ AForm* createPresidentialForm(std::string& target) {
     return new PresidentialPardonForm(target);
 }
 
-AForm* Intern::makeForm(std::string name_form, std::string target) {
+AForm* Intern::makeForm(std::string name_form, std::string target)
+{
     std::string formNames[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
     
     AForm* (*formCreators[3])(std::string&) = {createShrubberyForm, createRobotomyForm, createPresidentialForm};
