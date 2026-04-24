@@ -15,10 +15,9 @@ int main()
     std::cout << "Original pointer: " << originalPtr << std::endl;
     std::cout << "Deserialized pointer: " << newPtr << std::endl;
 
-    if (originalPtr == newPtr)
-        std::cout << "Success! Pointers match." << std::endl;
-    else
-        std::cout << "Error! Pointers do not match." << std::endl;
+    std::cout << "Original data: id = " << originalPtr->id << ", name = " << originalPtr->name << std::endl;
+    std::cout << "Deserialized data: id = " << newPtr->id << ", name = " << newPtr->name << std::endl;  
+
 
     return 0;
 }

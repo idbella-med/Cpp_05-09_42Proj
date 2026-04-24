@@ -1,14 +1,14 @@
-NAME = Data
+NAME = identify
 
 COMP = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = main.cpp \
-       Serializer.cpp
+	Base.cpp
 	
 OBJ = $(SRCS:.cpp=.o)
 
-HEADER = Serializer.hpp Data.hpp
+HEADER = Base.hpp
 
 all : $(NAME)
 

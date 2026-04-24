@@ -6,6 +6,11 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) { (voi
 ScalarConverter::~ScalarConverter() {}
 
 bool ScalarConverter::isChar(const std::string& str) {
+    if (str.length() == 1) {
+        if (isdigit(str[0]))
+            return false;
+        return true;
+    }
     return (str.length() == 3 && str[0] == '\'' && str[2] == '\'');
 }
 
@@ -192,14 +197,17 @@ void ScalarConverter::convert(const std::string& literal) {
     }
 
     if (isChar(literal)) {
-        convertFromChar(literal[1]);
+        if (literal.length() == 1)
+            convertFromChar(literal[0]);
+        else
+            convertFromChar(literal[1]);
         return;
     }
 
     if (isInt(literal)) {
         long long num = std::atoll(literal.c_str());
         if (num < std::numeric_limits<int>::min() || num > std::numeric_limits<int>::max()) {
-            std::cout << "Error: int overflow" << std::endl;
+            convertFromDouble(std::atof(literal.c_str()));
             return;
         }
         convertFromInt(static_cast<int>(num));
