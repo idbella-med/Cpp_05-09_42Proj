@@ -32,9 +32,9 @@ void identify(Base& p)
         std::cout << "A" << std::endl;
         return;
     }
-    catch (const std::exception&)
+    catch (std::exception& e)
     {
-        std::cout << "Error: unknown type" << std::endl;
+        std::cout << e.what() << std::endl;
     }
 
     try
@@ -43,9 +43,9 @@ void identify(Base& p)
         std::cout << "B" << std::endl;
         return;
     }
-    catch (const std::exception&)
+    catch (std::exception& e)
     {
-        std::cout << "Error: unknown type" << std::endl;
+        std::cout << e.what() << std::endl;
     }
 
     try
@@ -54,8 +54,8 @@ void identify(Base& p)
         std::cout << "C" << std::endl;
         return;
     }
-    catch (const std::exception&)
+    catch (std::exception& e)
     {
-        std::cout << "Error: unknown type" << std::endl;
+        std::cout << e.what() << std::endl;
     }
 }
