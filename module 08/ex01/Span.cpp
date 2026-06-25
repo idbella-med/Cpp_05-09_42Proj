@@ -24,7 +24,7 @@ Span& Span::operator=(const Span& other)
 void Span::addNumber(int num)
 {
     if (vec.size() >= N)
-        throw std::out_of_range("Exceeding the maximum capacity of the span.");
+        throw std::out_of_range("out of range");
     vec.push_back(num);
 }
 
@@ -32,12 +32,12 @@ void Span::addNumber(int num)
 int Span::shortestSpan() const
 {
     if (vec.size() < 2)
-        throw NoSpanException();
+        throw std::runtime_error("Not enough numbers to find a span.");
 
     std::vector<int> sortedVec(vec);
     std::sort(sortedVec.begin(), sortedVec.end());
 
-    int minSpan = std::numeric_limits<int>::max();
+    int minSpan = INT_MAX;
     for (size_t i = 1; i < sortedVec.size(); ++i)
     {
         int span = sortedVec[i] - sortedVec[i - 1];
@@ -51,7 +51,7 @@ int Span::shortestSpan() const
 int Span::longestSpan() const
 {
     if (vec.size() < 2)
-        throw NoSpanException();
+        throw std::runtime_error("Not enough numbers to find a span.");
 
     int minVal = *std::min_element(vec.begin(), vec.end());
     int maxVal = *std::max_element(vec.begin(), vec.end());

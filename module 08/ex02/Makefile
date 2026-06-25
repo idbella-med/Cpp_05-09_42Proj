@@ -1,4 +1,4 @@
-NAME : mutantstack
+NAME = mutantstack
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -11,7 +11,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-%.o : %.cpp
+%.o : %.cpp MutantStack.hpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :

@@ -11,7 +11,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-%.o : %.cpp
+%.o : %.cpp easyfind.hpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :

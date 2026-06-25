@@ -11,7 +11,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-%.o : %.cpp
+%.o : %.cpp Span.hpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :

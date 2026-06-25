@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <climits>
 #include <algorithm>
 #include <stdexcept>
 
@@ -23,19 +24,11 @@ class Span
         void addNumbers(InputIt first, InputIt last)
         {
             if (std::distance(first, last) + vec.size() > N)
-                throw std::out_of_range("Exceeding the maximum capacity of the span.");
+                throw std::out_of_range("out of range");
             vec.insert(vec.end(), first, last);
         }
 
         int shortestSpan() const;
         int longestSpan() const;
 
-        class NoSpanException : public std::exception
-        {
-            public:
-                const char* what() const throw()
-                {
-                    return "Not enough numbers to find a span.";
-                }
-        };
 };
