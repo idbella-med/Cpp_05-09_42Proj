@@ -1,14 +1,13 @@
-NAME = identify
+NAME = iter
 
 COMP = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp \
-	Base.cpp
+SRCS = main.cpp 
 	
 OBJ = $(SRCS:.cpp=.o)
 
-HEADER = Base.hpp
+HEADER = iter.hpp
 
 all : $(NAME)
 

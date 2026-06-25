@@ -8,8 +8,8 @@
 class Serializer {
     private:
         Serializer();
-        Serializer(const Serializer& other);
-        Serializer& operator=(const Serializer&);
+        Serializer(Serializer& other);
+        Serializer& operator=(Serializer& other);
         ~Serializer();
     public:
         static uintptr_t serialize(Data* ptr);
