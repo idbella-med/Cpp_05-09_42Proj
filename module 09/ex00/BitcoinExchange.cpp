@@ -2,21 +2,23 @@
 
 BitcoinExchange::BitcoinExchange() {}
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) {
-    (void)src;
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) : _data(src._data) {
 }
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& src) {
-    (void)src;
+    _data = src._data;
     return *this;
 }
 
 BitcoinExchange::~BitcoinExchange() {}
 
 void BitcoinExchange::loadDatabase(const std::string& filename) {
-    std::ifstream file(filename);
-    std::string line;
+    std::ifstream file(filename.c_str());
+    if (!file.is_open()) {
+        throw std::runtime_error("invalid data.csv");
+    }
 
+    std::string line;
     getline(file, line);
 
     while (getline(file, line)) {
@@ -95,9 +97,11 @@ std::string parse_day(const std::string &date, int month, int year) {
 }
 
 void BitcoinExchange::processInput(const std::string& filename) {
-    std::ifstream file(filename);
+    std::ifstream file(filename.c_str());
+    if (!file.is_open()) {
+        throw std::runtime_error("invalid input");
+    }
     std::string line;
-
     getline(file, line);
 
     while (getline(file, line)) {

@@ -1,6 +1,6 @@
 NAME = RPN
 CC = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp RPN.cpp
 OBJ = ${SRC:.cpp=.o}
@@ -10,7 +10,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	$(CC) $(FLAGS) -o $@ $^
 
-%.o : %.cpp
+%.o : %.cpp RPN.hpp
 	$(CC) $(FLAGS) -c -o $@ $<
 
 clean :
