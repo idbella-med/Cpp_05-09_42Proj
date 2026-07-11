@@ -54,8 +54,8 @@ std::vector<int> PmergeMe::jacobsthalSequence(int n) {
 }
 
 std::vector<int> PmergeMe::buildInsertionOrder(int losersSize) {
-    std::vector<int> jacob = jacobsthalSequence(losersSize);
     std::vector<int> order;
+    std::vector<int> jacob = jacobsthalSequence(losersSize);
 
     for (size_t k = 2; k < jacob.size(); ++k) {
         int curr = jacob[k] - 1;
@@ -76,7 +76,7 @@ std::vector<int> PmergeMe::fordJohnsonVec(std::vector<int> vec) {
         return vec;
 
     bool hasRest = (vec.size() % 2 != 0);
-    int  Rest    = hasRest ? vec.back() : 0;
+    int  Rest    = vec.back();
 
     std::vector<std::pair<int, int> > pairs;
     for (size_t i = 0; i + 1 < vec.size(); i += 2) {
@@ -136,7 +136,7 @@ std::list<int> PmergeMe::fordJohnsonLst(std::list<int> lst) {
         return lst;
 
     bool hasRest = (lst.size() % 2 != 0);
-    int  Rest    = hasRest ? lst.back() : 0;
+    int  Rest    = lst.back();
 
     std::list<std::pair<int, int> > pairs;
     std::list<int>::iterator it = lst.begin();

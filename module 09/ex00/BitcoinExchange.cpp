@@ -102,7 +102,19 @@ void BitcoinExchange::processInput(const std::string& filename) {
         throw std::runtime_error("invalid input");
     }
     std::string line;
-    getline(file, line);
+    if (!getline(file, line))
+        throw std::runtime_error("Error: empty input file.");
+    std::string left, right;
+    std::stringstream ss(line);
+
+    if (!getline(ss, left, '|') || !getline(ss, right))
+        throw std::runtime_error("Error: bad header");
+
+    left = Trim(left);
+    right = Trim(right);
+
+    if (left != "date" || right != "value")
+        throw std::runtime_error("Error: bad header");
 
     while (getline(file, line)) {
         std::string date;
@@ -110,11 +122,11 @@ void BitcoinExchange::processInput(const std::string& filename) {
         std::stringstream ss(line);
 
         if (!getline(ss, date, '|'))  {
-            std::cerr << "Error: bad input => " << line << std::endl;
+            std::cout << "Error: bad input => " << line << std::endl;
             continue;
         }
         if (!getline(ss, value)) {
-            std::cerr << "Error: bad input => " << line << std::endl;
+            std::cout << "Error: bad input => " << line << std::endl;
             continue;
         }
 
@@ -123,25 +135,25 @@ void BitcoinExchange::processInput(const std::string& filename) {
 
         std::string yearStr = parse_years(date);
         if (yearStr.empty()) {
-            std::cerr << "Error: bad input => " << date << std::endl;
+            std::cout << "Error: bad input => " << date << std::endl;
             continue;
         }
         int year = strtol(yearStr.c_str(), NULL, 10);
 
         if (!parse_dash(date)) {
-            std::cerr << "Error: bad input => " << date << std::endl;
+            std::cout << "Error: bad input => " << date << std::endl;
             continue;
         }
         std::string monthStr = parse_month(date);
         if (monthStr.empty()) {
-            std::cerr << "Error: bad input => " << date << std::endl;
+            std::cout << "Error: bad input => " << date << std::endl;
             continue;
         }
         int month = strtol(monthStr.c_str(), NULL, 10);
 
         std::string dayStr = parse_day(date, month, year);
         if (dayStr.empty()) {
-            std::cerr << "Error: bad input => " << date << std::endl;
+            std::cout << "Error: bad input => " << date << std::endl;
             continue;
         }
 
@@ -149,15 +161,15 @@ void BitcoinExchange::processInput(const std::string& filename) {
         float amount = strtof(value.c_str(), &end);
 
         if (*end != '\0') {
-            std::cerr << "Error: bad input => " << line << std::endl;
+            std::cout << "Error: bad input => " << line << std::endl;
             continue;
         }
         if (amount < 0) {
-            std::cerr << "Error: not a positive number." << std::endl;
+            std::cout << "Error: not a positive number." << std::endl;
             continue;
         }
         if (amount > 1000) {
-            std::cerr << "Error: too large a number." << std::endl;
+            std::cout << "Error: too large a number." << std::endl;
             continue;
         }
 
@@ -168,7 +180,7 @@ void BitcoinExchange::processInput(const std::string& filename) {
         else if (it->first == date)
             ;
         else if (it == _data.begin()) {
-            std::cerr << "Error: bad input => " << date << std::endl;
+            std::cout << "Error: bad input => " << date << std::endl;
             continue;
         }
         else

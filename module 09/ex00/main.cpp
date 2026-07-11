@@ -2,7 +2,7 @@
 
 int main(int ac, char **av) {
     if (ac != 2) {
-        std::cerr << "Usage: ./btc input.csv" << std::endl;
+        std::cout << "Usage: ./btc input.txt" << std::endl;
         return 1;
     }
     try {
@@ -11,7 +11,7 @@ int main(int ac, char **av) {
         bt.processInput(av[1]);
     }
     catch (std::exception &e) {
-        std::cerr << e.what() << std::endl;
+        std::cout << e.what() << std::endl;
     }
 
 }
